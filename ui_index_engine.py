@@ -1,6 +1,9 @@
-import os
-import pandas as pd
 import requests
+
+try:
+    import pandas as pd
+except ImportError:
+    pd = None
 
 class LiveUIIndexEngine:
     def __init__(self):
@@ -35,12 +38,12 @@ class LiveUIIndexEngine:
         for name, config in self.jurisdictions.items():
             statute = self.fetch_live_dol_statutes(config["state_code"])
             weekly_housing = self.fetch_live_hud_rent(config["state_code"], config["county_fips"])
-            
+
             bai = statute["max_wba"] / weekly_housing
             wbi = statute["taxable_base"] / statute["avg_wage"]
             net_counted = max(0, side_hustle_earnings - statute["disregard"])
             mipi = net_counted / statute["max_wba"]
-            
+
             live_records.append({
                 "Jurisdiction": name,
                 "Live Adequacy (BAI)": round(bai, 2),
@@ -48,10 +51,36 @@ class LiveUIIndexEngine:
                 "Clawback Penalty (MIPI)": round(mipi, 2),
                 "Systemic Status": "CRITICAL DECAY" if bai < 1.0 else "STABLE"
             })
-        return pd.DataFrame(live_records)
+
+        if pd:
+            return pd.DataFrame(live_records)
+        return live_records
+
+
+def format_dashboard(records):
+    if isinstance(records, list):
+        headers = [
+            "Jurisdiction",
+            "Live Adequacy (BAI)",
+            "Tax Base Index (WBI)",
+            "Clawback Penalty (MIPI)",
+            "Systemic Status"
+        ]
+        rows = [headers] + [[str(record[h]) for h in headers] for record in records]
+        widths = [max(len(row[i]) for row in rows) for i in range(len(headers))]
+        lines = []
+        for row in rows:
+            lines.append(" | ".join(val.ljust(widths[i]) for i, val in enumerate(row)))
+        return "\n".join(lines)
+
+    if hasattr(records, "to_markdown"):
+        return records.to_markdown(index=False)
+
+    return str(records)
+
 
 if __name__ == "__main__":
     print("📡 Querying Live Open Data API Endpoints across DC, MD, and VA...\n")
     engine = LiveUIIndexEngine()
-    df = engine.generate_live_dashboard(side_hustle_earnings=250)
-    print(df.to_markdown(index=False))
+    dashboard = engine.generate_live_dashboard(side_hustle_earnings=250)
+    print(format_dashboard(dashboard))
