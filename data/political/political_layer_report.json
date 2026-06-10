@@ -1,0 +1,666 @@
+{
+  "timestamp": "2026-06-11T06:06:13.209864",
+  "total_members": 24,
+  "by_state": {
+    "MD": 10,
+    "VA": 13,
+    "DC": 1
+  },
+  "ui_relevant_committee_members": 13,
+  "ui_members_detail": [
+    {
+      "bioguide_id": "H001052",
+      "name": "Andy Harris",
+      "state": "MD",
+      "state_name": "Maryland",
+      "district": 1,
+      "chamber": "House",
+      "party": "Republican",
+      "start_year": 2011,
+      "current": true,
+      "committees": [
+        "Appropriations"
+      ],
+      "constituent_median_income": 88691,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "R000606",
+      "name": "Dutch Ruppersberger",
+      "state": "MD",
+      "state_name": "Maryland",
+      "district": 2,
+      "chamber": "House",
+      "party": "Democratic",
+      "start_year": 2003,
+      "current": true,
+      "committees": [
+        "Appropriations"
+      ],
+      "constituent_median_income": 95710,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "H001038",
+      "name": "Steny Hoyer",
+      "state": "MD",
+      "state_name": "Maryland",
+      "district": 5,
+      "chamber": "House",
+      "party": "Democratic",
+      "start_year": 1981,
+      "current": true,
+      "committees": [
+        "Appropriations"
+      ],
+      "constituent_median_income": 124709,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "T000467",
+      "name": "David Trone",
+      "state": "MD",
+      "state_name": "Maryland",
+      "district": 6,
+      "chamber": "House",
+      "party": "Democratic",
+      "start_year": 2019,
+      "current": true,
+      "committees": [
+        "Ways and Means",
+        "Budget"
+      ],
+      "constituent_median_income": 96438,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "M001205",
+      "name": "Kweisi Mfume",
+      "state": "MD",
+      "state_name": "Maryland",
+      "district": 7,
+      "chamber": "House",
+      "party": "Democratic",
+      "start_year": 1987,
+      "current": true,
+      "committees": [
+        "Education and Workforce",
+        "Small Business"
+      ],
+      "constituent_median_income": 59876,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "C000141",
+      "name": "Ben Cardin",
+      "state": "MD",
+      "state_name": "Maryland",
+      "district": null,
+      "chamber": "Senate",
+      "party": "Democratic",
+      "start_year": 2007,
+      "current": true,
+      "committees": [
+        "Finance",
+        "Environment and Public Works",
+        "Foreign Relations",
+        "Small Business and Entrepreneurship"
+      ],
+      "constituent_median_income": 101197,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "V000128",
+      "name": "Chris Van Hollen",
+      "state": "MD",
+      "state_name": "Maryland",
+      "district": null,
+      "chamber": "Senate",
+      "party": "Democratic",
+      "start_year": 2017,
+      "current": true,
+      "committees": [
+        "Appropriations",
+        "Banking, Housing, and Urban Affairs",
+        "Budget",
+        "Foreign Relations"
+      ],
+      "constituent_median_income": 101197,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "K000399",
+      "name": "Jen Kiggans",
+      "state": "VA",
+      "state_name": "Virginia",
+      "district": 2,
+      "chamber": "House",
+      "party": "Republican",
+      "start_year": 2023,
+      "current": true,
+      "committees": [
+        "Armed Services",
+        "Veterans' Affairs",
+        "Ways and Means"
+      ],
+      "constituent_median_income": 88833,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "S001168",
+      "name": "Bobby Scott",
+      "state": "VA",
+      "state_name": "Virginia",
+      "district": 3,
+      "chamber": "House",
+      "party": "Democratic",
+      "start_year": 1993,
+      "current": true,
+      "committees": [
+        "Education and Workforce",
+        "Ways and Means"
+      ],
+      "constituent_median_income": 63317,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "C001108",
+      "name": "Ben Cline",
+      "state": "VA",
+      "state_name": "Virginia",
+      "district": 6,
+      "chamber": "House",
+      "party": "Republican",
+      "start_year": 2019,
+      "current": true,
+      "committees": [
+        "Appropriations",
+        "Budget"
+      ],
+      "constituent_median_income": 67266,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "B001292",
+      "name": "Don Beyer",
+      "state": "VA",
+      "state_name": "Virginia",
+      "district": 8,
+      "chamber": "House",
+      "party": "Democratic",
+      "start_year": 2015,
+      "current": true,
+      "committees": [
+        "Ways and Means",
+        "Science, Space, and Technology"
+      ],
+      "constituent_median_income": 125652,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "W000805",
+      "name": "Mark Warner",
+      "state": "VA",
+      "state_name": "Virginia",
+      "district": null,
+      "chamber": "Senate",
+      "party": "Democratic",
+      "start_year": 2009,
+      "current": true,
+      "committees": [
+        "Finance",
+        "Banking, Housing, and Urban Affairs",
+        "Budget",
+        "Rules and Administration",
+        "Intelligence",
+        "Homeland Security and Governmental Affairs"
+      ],
+      "constituent_median_income": 94716,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "K000384",
+      "name": "Tim Kaine",
+      "state": "VA",
+      "state_name": "Virginia",
+      "district": null,
+      "chamber": "Senate",
+      "party": "Democratic",
+      "start_year": 2013,
+      "current": true,
+      "committees": [
+        "Armed Services",
+        "Budget",
+        "Foreign Relations",
+        "Health, Education, Labor, and Pensions"
+      ],
+      "constituent_median_income": 94716,
+      "is_nonvoting": false
+    }
+  ],
+  "member_table": [
+    {
+      "bioguide_id": "H001052",
+      "name": "Andy Harris",
+      "state": "MD",
+      "state_name": "Maryland",
+      "district": 1,
+      "chamber": "House",
+      "party": "Republican",
+      "start_year": 2011,
+      "current": true,
+      "committees": [
+        "Appropriations"
+      ],
+      "constituent_median_income": 88691,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "R000606",
+      "name": "Dutch Ruppersberger",
+      "state": "MD",
+      "state_name": "Maryland",
+      "district": 2,
+      "chamber": "House",
+      "party": "Democratic",
+      "start_year": 2003,
+      "current": true,
+      "committees": [
+        "Appropriations"
+      ],
+      "constituent_median_income": 95710,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "S001168",
+      "name": "John Sarbanes",
+      "state": "MD",
+      "state_name": "Maryland",
+      "district": 3,
+      "chamber": "House",
+      "party": "Democratic",
+      "start_year": 2007,
+      "current": true,
+      "committees": [
+        "Energy and Commerce",
+        "Oversight and Accountability"
+      ],
+      "constituent_median_income": 124187,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "I000056",
+      "name": "Glenn Ivey",
+      "state": "MD",
+      "state_name": "Maryland",
+      "district": 4,
+      "chamber": "House",
+      "party": "Democratic",
+      "start_year": 2023,
+      "current": true,
+      "committees": [
+        "Financial Services",
+        "Oversight and Accountability"
+      ],
+      "constituent_median_income": 88498,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "H001038",
+      "name": "Steny Hoyer",
+      "state": "MD",
+      "state_name": "Maryland",
+      "district": 5,
+      "chamber": "House",
+      "party": "Democratic",
+      "start_year": 1981,
+      "current": true,
+      "committees": [
+        "Appropriations"
+      ],
+      "constituent_median_income": 124709,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "T000467",
+      "name": "David Trone",
+      "state": "MD",
+      "state_name": "Maryland",
+      "district": 6,
+      "chamber": "House",
+      "party": "Democratic",
+      "start_year": 2019,
+      "current": true,
+      "committees": [
+        "Ways and Means",
+        "Budget"
+      ],
+      "constituent_median_income": 96438,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "M001205",
+      "name": "Kweisi Mfume",
+      "state": "MD",
+      "state_name": "Maryland",
+      "district": 7,
+      "chamber": "House",
+      "party": "Democratic",
+      "start_year": 1987,
+      "current": true,
+      "committees": [
+        "Education and Workforce",
+        "Small Business"
+      ],
+      "constituent_median_income": 59876,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "R000576",
+      "name": "Jamie Raskin",
+      "state": "MD",
+      "state_name": "Maryland",
+      "district": 8,
+      "chamber": "House",
+      "party": "Democratic",
+      "start_year": 2017,
+      "current": true,
+      "committees": [
+        "Oversight and Accountability",
+        "House Administration",
+        "Judiciary"
+      ],
+      "constituent_median_income": 131468,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "C000141",
+      "name": "Ben Cardin",
+      "state": "MD",
+      "state_name": "Maryland",
+      "district": null,
+      "chamber": "Senate",
+      "party": "Democratic",
+      "start_year": 2007,
+      "current": true,
+      "committees": [
+        "Finance",
+        "Environment and Public Works",
+        "Foreign Relations",
+        "Small Business and Entrepreneurship"
+      ],
+      "constituent_median_income": 101197,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "V000128",
+      "name": "Chris Van Hollen",
+      "state": "MD",
+      "state_name": "Maryland",
+      "district": null,
+      "chamber": "Senate",
+      "party": "Democratic",
+      "start_year": 2017,
+      "current": true,
+      "committees": [
+        "Appropriations",
+        "Banking, Housing, and Urban Affairs",
+        "Budget",
+        "Foreign Relations"
+      ],
+      "constituent_median_income": 101197,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "W000804",
+      "name": "Rob Wittman",
+      "state": "VA",
+      "state_name": "Virginia",
+      "district": 1,
+      "chamber": "House",
+      "party": "Republican",
+      "start_year": 2007,
+      "current": true,
+      "committees": [
+        "Armed Services",
+        "Natural Resources"
+      ],
+      "constituent_median_income": 99506,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "K000399",
+      "name": "Jen Kiggans",
+      "state": "VA",
+      "state_name": "Virginia",
+      "district": 2,
+      "chamber": "House",
+      "party": "Republican",
+      "start_year": 2023,
+      "current": true,
+      "committees": [
+        "Armed Services",
+        "Veterans' Affairs",
+        "Ways and Means"
+      ],
+      "constituent_median_income": 88833,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "S001168",
+      "name": "Bobby Scott",
+      "state": "VA",
+      "state_name": "Virginia",
+      "district": 3,
+      "chamber": "House",
+      "party": "Democratic",
+      "start_year": 1993,
+      "current": true,
+      "committees": [
+        "Education and Workforce",
+        "Ways and Means"
+      ],
+      "constituent_median_income": 63317,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "M001241",
+      "name": "Jennifer McClellan",
+      "state": "VA",
+      "state_name": "Virginia",
+      "district": 4,
+      "chamber": "House",
+      "party": "Democratic",
+      "start_year": 2023,
+      "current": true,
+      "committees": [
+        "Agriculture",
+        "Science, Space, and Technology"
+      ],
+      "constituent_median_income": 65195,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "C001118",
+      "name": "John McGuire",
+      "state": "VA",
+      "state_name": "Virginia",
+      "district": 5,
+      "chamber": "House",
+      "party": "Republican",
+      "start_year": 2025,
+      "current": true,
+      "committees": [
+        "Agriculture",
+        "Natural Resources",
+        "Science, Space, and Technology"
+      ],
+      "constituent_median_income": 67225,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "C001108",
+      "name": "Ben Cline",
+      "state": "VA",
+      "state_name": "Virginia",
+      "district": 6,
+      "chamber": "House",
+      "party": "Republican",
+      "start_year": 2019,
+      "current": true,
+      "committees": [
+        "Appropriations",
+        "Budget"
+      ],
+      "constituent_median_income": 67266,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "V000131",
+      "name": "Abigail Spanberger",
+      "state": "VA",
+      "state_name": "Virginia",
+      "district": 7,
+      "chamber": "House",
+      "party": "Democratic",
+      "start_year": 2019,
+      "current": true,
+      "committees": [
+        "Agriculture",
+        "Foreign Affairs"
+      ],
+      "constituent_median_income": 106405,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "B001292",
+      "name": "Don Beyer",
+      "state": "VA",
+      "state_name": "Virginia",
+      "district": 8,
+      "chamber": "House",
+      "party": "Democratic",
+      "start_year": 2015,
+      "current": true,
+      "committees": [
+        "Ways and Means",
+        "Science, Space, and Technology"
+      ],
+      "constituent_median_income": 125652,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "G000605",
+      "name": "Morgan Griffith",
+      "state": "VA",
+      "state_name": "Virginia",
+      "district": 9,
+      "chamber": "House",
+      "party": "Republican",
+      "start_year": 2011,
+      "current": true,
+      "committees": [
+        "Energy and Commerce",
+        "Oversight and Accountability"
+      ],
+      "constituent_median_income": 54576,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "S001230",
+      "name": "Suhas Subramanyam",
+      "state": "VA",
+      "state_name": "Virginia",
+      "district": 10,
+      "chamber": "House",
+      "party": "Democratic",
+      "start_year": 2025,
+      "current": true,
+      "committees": [
+        "Oversight and Accountability",
+        "Small Business"
+      ],
+      "constituent_median_income": 151061,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "C001078",
+      "name": "Gerald Connolly",
+      "state": "VA",
+      "state_name": "Virginia",
+      "district": 11,
+      "chamber": "House",
+      "party": "Democratic",
+      "start_year": 2009,
+      "current": true,
+      "committees": [
+        "Foreign Affairs",
+        "Oversight and Accountability"
+      ],
+      "constituent_median_income": 152845,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "W000805",
+      "name": "Mark Warner",
+      "state": "VA",
+      "state_name": "Virginia",
+      "district": null,
+      "chamber": "Senate",
+      "party": "Democratic",
+      "start_year": 2009,
+      "current": true,
+      "committees": [
+        "Finance",
+        "Banking, Housing, and Urban Affairs",
+        "Budget",
+        "Rules and Administration",
+        "Intelligence",
+        "Homeland Security and Governmental Affairs"
+      ],
+      "constituent_median_income": 94716,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "K000384",
+      "name": "Tim Kaine",
+      "state": "VA",
+      "state_name": "Virginia",
+      "district": null,
+      "chamber": "Senate",
+      "party": "Democratic",
+      "start_year": 2013,
+      "current": true,
+      "committees": [
+        "Armed Services",
+        "Budget",
+        "Foreign Relations",
+        "Health, Education, Labor, and Pensions"
+      ],
+      "constituent_median_income": 94716,
+      "is_nonvoting": false
+    },
+    {
+      "bioguide_id": "N000147",
+      "name": "Eleanor Holmes Norton",
+      "state": "DC",
+      "state_name": "District of Columbia",
+      "district": 0,
+      "chamber": "House",
+      "party": "Democratic",
+      "start_year": 1991,
+      "current": true,
+      "committees": [
+        "Oversight and Accountability",
+        "Transportation and Infrastructure"
+      ],
+      "constituent_median_income": null,
+      "is_nonvoting": true
+    }
+  ],
+  "income_source": "Census ACS 2022 5-Year (B19013_001E) - api.census.gov",
+  "member_source": "Congress.gov public directory (verified 2026-06-10)",
+  "opensecrets_status": "NOT AVAILABLE - Cloudflare blocked, documented as future integration",
+  "congress_api_status": "RATE LIMITED - api.congress.gov OVER_RATE_LIMIT, retry required",
+  "data_quality": "VERIFIED - Census income API confirmed, member data from official directory"
+}

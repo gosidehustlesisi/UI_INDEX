@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Chris Van Hollen",
+    "state": "MD",
+    "candidate_id": "S6MD03441",
+    "committee_id": "C00573758",
+    "committee_name": "VAN HOLLEN FOR SENATE",
+    "total_receipts": 1515661.04,
+    "individual_contributions": 1197783.57,
+    "pac_contributions": 0,
+    "other_receipts": 1000.0
+  },
+  {
+    "name": "Mark Warner",
+    "state": "VA",
+    "candidate_id": "S6VA00093",
+    "committee_id": "C00438713",
+    "committee_name": "FRIENDS OF MARK WARNER",
+    "total_receipts": 14719667.27,
+    "individual_contributions": 7701091.39,
+    "pac_contributions": 0,
+    "other_receipts": 536842.61
+  },
+  {
+    "name": "Don Beyer",
+    "state": "VA",
+    "candidate_id": "H4VA08224",
+    "committee_id": "C00555888",
+    "committee_name": "FRIENDS OF DON BEYER",
+    "total_receipts": 1628106.55,
+    "individual_contributions": 1205220.0,
+    "pac_contributions": 0,
+    "other_receipts": 0
+  }
+]
