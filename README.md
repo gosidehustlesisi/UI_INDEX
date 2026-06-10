@@ -48,7 +48,33 @@ The engine generates a formatted dashboard showing all three indices across DC, 
 
 ## 📊 Visual Analysis
 
-See `ui_index_analysis.ipynb` for full interactive charts showing BAI decay trajectories, WBI stagnation, and MIPI clawback severity across the 16-year window.
+![BAI Decay Trajectory](figures/01_bai_decay_trajectory.png)
+
+*Benefit Adequacy Index trajectory across all three jurisdictions. The red threshold at 1.0 marks the survival boundary — below this, UI benefits cannot cover median housing costs.*
+
+![WBI Stagnation](figures/02_wbi_stagnation.png)
+
+*Regressive Wage Base Index showing how flat SUI caps (MD frozen at $8,500 since 1992) become progressively smaller fractions of average wages.*
+
+![MIPI Clawback](figures/03_mipi_clawback.png)
+
+*Multi-Income Penalty Index at $250 side-hustle earnings. Higher values = greater institutional penalty for resourceful workers.*
+
+![Housing vs WBA Gap](figures/04_housing_vs_wba_gap.png)
+
+*Direct comparison of maximum weekly benefits against median weekly housing costs. The gap is the survival deficit.*
+
+See `ui_index_analysis.ipynb` for full interactive reproduction of all charts.
+
+## 📈 Key Findings
+
+| Jurisdiction | BAI 2010 | BAI 2026 | Δ BAI | Direction |
+|-------------|----------|----------|-------|-----------|
+| Maryland | 1.46 | 0.96 | **-0.50** | WORSENING |
+| Virginia | 1.40 | 0.90 | **-0.50** | WORSENING |
+| DC | 0.94 | 0.85 | **-0.09** | WORSENING |
+
+All three jurisdictions show **declining benefit adequacy** over the 16-year window. Maryland and Virginia crossed below the survival threshold (BAI < 1.0) by 2026. DC was already below threshold in 2010 and continues to deteriorate.
 
 ## 📝 License
 
