@@ -1,6 +1,9 @@
 {
-  "timestamp": "2026-06-11T06:14:53.997822",
+  "timestamp": "2026-06-11T08:09:14.529607",
+  "cycle": 2024,
   "total_api_calls": 22,
   "members_analyzed": 7,
+  "validation_errors": 0,
+  "excluded_records": 219,
   "rate_limit": "1000/hour"
 }
