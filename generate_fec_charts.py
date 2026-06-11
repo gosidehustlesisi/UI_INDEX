@@ -11,6 +11,11 @@ plt.rcParams['figure.dpi'] = 150
 with open('data/political/fec_funding_profiles.json') as f:
     fec_data = json.load(f)
 
+# CRITICAL: Verify cycle filter before generating charts
+assert all(p.get('cycle') == 2024 for p in fec_data), \
+    "Stale data detected — regenerate with v251d (cycle=2024). " \
+    "Current data may include multi-cycle totals that produce inflated figures."
+
 df = pd.DataFrame(fec_data)
 
 # Chart 1: Total Receipts by Member (sorted)

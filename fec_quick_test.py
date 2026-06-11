@@ -5,7 +5,17 @@ import json
 import time
 from pathlib import Path
 
-KEY = "bIECQF2WSf7dK7U1KgGLlrxx8UYBabZzrgSJ1KMr"
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+KEY = os.environ.get("FEC_API_KEY", "")
+if not KEY:
+    print("⚠️  FEC_API_KEY not found in environment. Set it in .env file or export FEC_API_KEY=your_key")
+    print("   Get a key at: https://api.open.fec.gov/developers/")
+    KEY = "DEMO_KEY"  # Fallback for limited testing
+
 BASE = "https://api.open.fec.gov/v1"
 
 def call(endpoint, params):

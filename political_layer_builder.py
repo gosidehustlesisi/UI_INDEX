@@ -1,14 +1,21 @@
 import json
+import os
+from dotenv import load_dotenv
 from pathlib import Path
 from typing import Dict, List, Optional
 from dataclasses import dataclass, asdict
 
 from api_client import APIClient
 
+load_dotenv()
 
 CONGRESS_GOV_BASE = "https://api.congress.gov/v3"
 CENSUS_BASE = "https://api.census.gov/data/2022/acs/acs5"
-CENSUS_KEY = "36d18b553381601786d8a012a3ec4788efa0c390"
+CENSUS_KEY = os.environ.get("CENSUS_API_KEY", "")
+if not CENSUS_KEY:
+    print("⚠️  CENSUS_API_KEY not found in environment. Set it in .env file or export CENSUS_API_KEY=your_key")
+    print("   Get a key at: https://api.census.gov/data/key_signup.html")
+    CENSUS_KEY = "DEMO_KEY"  # Fallback for limited testing
 
 FIPS_MAP = {
     "MD": "24",

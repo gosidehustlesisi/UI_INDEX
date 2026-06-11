@@ -1,9 +1,20 @@
 {
-  "timestamp": "2026-06-11T08:09:14.529607",
-  "cycle": 2024,
-  "total_api_calls": 22,
-  "members_analyzed": 7,
-  "validation_errors": 0,
-  "excluded_records": 219,
-  "rate_limit": "1000/hour"
+  "_metadata": {
+    "generated_by": "api_client.py",
+    "generated_at": "2026-06-11T00:00:00Z",
+    "cycle": 2024,
+    "api_version": "v1",
+    "reconciliation_status": "AUDIT",
+    "purpose": "API call audit log",
+    "caveat": "For corruption investigation, compare against raw multi-cycle data and delta analysis."
+  },
+  "data": {
+    "timestamp": "2026-06-11T08:09:14.529607",
+    "cycle": 2024,
+    "total_api_calls": 22,
+    "members_analyzed": 7,
+    "validation_errors": 0,
+    "excluded_records": 219,
+    "rate_limit": "1000/hour"
+  }
 }

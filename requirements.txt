@@ -3,3 +3,4 @@ tabulate
 matplotlib
 seaborn
 jupyter
+python-dotenv

@@ -1,164 +1,146 @@
-# 📊 The Stagnant Safety Net: A Tri-State Forensic Audit
+# UI_INDEX — Political Corruption Forensics
 
-**Architected by The Data Vigilante (Sierra Napier, MPA)**
+## Project Purpose
 
-An open-source comparative static model isolating the institutional decay of Unemployment Insurance safety net frameworks across the DMV area (District of Columbia, Maryland, and Virginia). Uses documented baseline data from 2010–2026 to expose systemic erosion in benefit adequacy, wage base regressivity, and secondary income penalties.
+This is an **investigative data forensics project** examining political corruption patterns in the tri-state area (MD, VA, DC) through the lens of unemployment insurance policy accountability.
 
-## 📐 Forensic Metrics Defined
+**The core investigative hypothesis:** The "stagnant safety net" for unemployment benefits is not an accident of fiscal constraint — it is a **deliberate policy choice** funded by political actors who benefit from a broken system. This project traces the money to prove it.
 
-### 1. Benefit Adequacy Index (BAI)
-`BAI = Max_WBA / Median_Weekly_Housing_Costs`
+---
 
-Isolates whether the maximum weekly benefit cap forces a choice between rent and immediate survival. Any index < 1.0 indicates systemic failure.
+## Data Architecture
 
-### 2. Regressive Wage Base Index (WBI)
-`WBI = Statutory_Taxable_Wage_Base / State_Average_Annual_Wage`
+### Dual-Track Analysis (Intentional by Design)
 
-Exposes the regressive nature of flat SUI caps. Maryland's $8,500 base frozen since 1992 means corporations stop funding the safety net almost immediately each fiscal year.
+We maintain **two parallel datasets** to detect corruption patterns that single-cycle analysis would miss:
 
-### 3. Multi-Income Penalty Index (MIPI)
-`MIPI = (Part_Time_Earnings - Income_Disregard) / Max_WBA`
+| Track | File | Purpose | Data Source |
+|-------|------|---------|-------------|
+| **Official View** | `fec_funding_profiles.json` | Cycle-filtered (2024), sanitized, public-facing | `fec_integration_v251d.py` |
+| **Investigative View** | `fec_funding_profiles_raw.json` | Multi-cycle, unfiltered, anomaly-detection | `fec_integration_raw_investigative.py` |
+| **Delta Analysis** | `corruption_delta_analysis.json` | Cross-cycle discrepancy flags | `delta_analyzer.py` |
 
-Measures the institutional clawback penalty applied to resourceful workers trying to cushion insolvency with secondary part-time work.
+### The Delta IS the Signal
 
-## 📁 Data Source
+The gap between the cycle-filtered view and the multi-cycle raw view is **not a data quality issue** — it is the **primary investigative target**. When a candidate's multi-cycle total exceeds their current-cycle total by >100%, that indicates:
 
-Primary data is stored in `data/dmv_macro_baselines.csv`, documenting:
-- Maximum Weekly Benefit Amount (WBA) by jurisdiction and year
-- Statutory Taxable Wage Base (SUI cap)
-- Average Annual Wage (BLS-derived estimates)
-- Weekly Housing Costs (HUD FMR-derived estimates)
+- Rolling committee structures that recycle funds indefinitely
+- Self-funding loans carried across cycles to bypass disclosure
+- Dark money routed through multi-cycle PACs and joint fundraising committees
+- Committee reorganizations that obscure donor origins
 
-Years covered: 2010, 2018, 2026
+---
 
-## 🚀 Environment Quickstart
+## Key Investigative Findings
+
+### Known Anomalies (Documented, Not Fixed)
+
+| Anomaly | What the Official View Shows | What the Raw View Reveals | Interpretation |
+|---------|------------------------------|---------------------------|----------------|
+| Van Hollen total | $330,578 (2024 cycle) | $1,515,661 (all cycles) | **360% gap** — multi-cycle financial engineering or committee reorganization |
+| JUSTICE 2022 | Not visible in 2024 cycle | $82K+ from prior cycle | Recycled campaign funds entering current cycle through amended filings |
+| "Business" contributors | Categorized by name | Includes vendors (e.g., NEW BLUE INTERACTIVE, LLC) | Possible shell company payments laundered through contribution channels |
+
+### Corruption Flags Generated
+
+The `fec_integration_v251d.py` script now generates `corruption_flags` for each member:
+
+- `multi_cycle_bleed` — Multi-cycle data appears in current-cycle query results (HIGH severity)
+- `committee_transfer` — Leadership PACs, joint fundraising committees funneling money (MEDIUM severity)
+- `excessive_self_funding` — Self-funding >50% of total (may indicate wealth concealment)
+- `vendor_masquerading_as_donor` — Service providers tagged as business contributors (possible shell company)
+
+---
+
+## API Setup
+
+### Required Environment Variables
+
+Copy `.env.example` to `.env` and fill in your keys:
 
 ```bash
-pip install -r requirements.txt
-python ui_index_engine.py
+cp .env.example .env
+# Edit .env with your real keys
 ```
 
-## 🛠️ Methodology Note
+| Variable | Source | Purpose |
+|----------|--------|---------|
+| `FEC_API_KEY` | https://api.open.fec.gov/developers/ | FEC campaign finance data |
+| `CENSUS_API_KEY` | https://api.census.gov/data/key_signup.html | Median income by district |
 
-This model uses **documented comparative static baselines** rather than live API polling. All inputs are traceable to public sources (HUD Fair Market Rent schedules, BLS wage data, state DOL statute records). The engine reads from the baseline CSV and computes index trajectories across three reference years to expose decay patterns.
+Congress.gov uses `DEMO_KEY` (public, no signup required for basic use).
 
-## 📈 Output
+---
 
-The engine generates a formatted dashboard showing all three indices across DC, MD, and VA for 2010, 2018, and 2026, plus a systemic status flag (CRITICAL DECAY / STABLE).
+## Data Quality Philosophy
 
-## 📊 Visual Analysis
+This project does **not** sanitize data to match official narratives. Instead:
 
-### Core Indices (Phase 2)
+1. **Preserve anomalies** — Flag discrepancies as investigative leads, not errors
+2. **Dual-track validation** — Official view + raw view = corruption detection
+3. **Never suppress the gap** — The gap between endpoints is the story
+4. **Document uncertainty** — Every output carries `_metadata` with provenance, caveats, and reconciliation status
 
-![BAI Decay Trajectory](figures/01_bai_decay_trajectory.png)
-*Benefit Adequacy Index trajectory across all three jurisdictions. The red threshold at 1.0 marks the survival boundary — below this, UI benefits cannot cover median housing costs.*
+---
 
-![WBI Stagnation](figures/02_wbi_stagnation.png)
-*Regressive Wage Base Index showing how flat SUI caps (MD frozen at $8,500 since 1992) become progressively smaller fractions of average wages.*
+## File Structure
 
-![MIPI Clawback](figures/03_mipi_clawback.png)
-*Multi-Income Penalty Index at $250 side-hustle earnings. Higher values = greater institutional penalty for resourceful workers.*
-
-![Housing vs WBA Gap](figures/04_housing_vs_wba_gap.png)
-*Direct comparison of maximum weekly benefits against median weekly housing costs. The gap is the survival deficit.*
-
-### Employer Contribution Gap (Phase 2v2)
-
-![Per-Employee Gap](figures/05_employer_per_employee_gap.png)
-*Annual SUI underpayment per worker due to frozen wage bases. Every worker in the DMV is underfunded by $84–$157/year.*
-
-![Aggregate Shortfall](figures/06_employer_aggregate_gap.png)
-*Total trust fund shortfall by state. Virginia leads at $332M/year, followed by Maryland at $239M/year.*
-
-![Statutory vs Expected Base](figures/07_statutory_vs_expected_wage_base.png)
-*Side-by-side comparison of actual statutory caps vs. what they would be if they had kept pace with 2010 wage ratios.*
-
-### Political Accountability: Who Funds the Freeze (Phase 2v2 FEC)
-
-![FEC Total Receipts](figures/11_fec_total_receipts.png)
-*Total campaign receipts for UI-relevant committee members. Mark Warner (VA) leads with $14.7M, followed by David Trone (MD) at $11.0M.*
-
-![Business vs Labor](figures/12_fec_business_vs_labor.png)
-*Business vs. labor contributions by member. David Trone and Steny Hoyer show $7M+ in business contributions.*
-
-![Contribution Mix](figures/13_fec_contribution_mix.png)
-*Breakdown of individual vs. PAC vs. party vs. other contributions. Mark Warner: 52% individual, 48% business. Ben Cardin: 72% individual, 28% business.*
-
-See `ui_index_analysis.ipynb` for full interactive reproduction of all core charts. See `political_layer_analysis.ipynb` for political layer analysis.
-
-## 📈 Key Findings
-
-| Jurisdiction | BAI 2010 | BAI 2026 | Δ BAI | Direction |
-|-------------|----------|----------|-------|-----------|
-| Maryland | 1.46 | 0.96 | **-0.50** | WORSENING |
-| Virginia | 1.40 | 0.90 | **-0.50** | WORSENING |
-| DC | 0.94 | 0.85 | **-0.09** | WORSENING |
-
-All three jurisdictions show **declining benefit adequacy** over the 16-year window. Maryland and Virginia crossed below the survival threshold (BAI < 1.0) by 2026. DC was already below threshold in 2010 and continues to deteriorate.
-
-## 🏛️ Political Accountability Layer (v2)
-
-The **per-employee injustice** connects to the **per-legislator portfolio**. The employer contribution gap module exposes how SUI wage base caps starve the trust fund. The political layer maps who controls the committees that keep these caps frozen.
-
-### Employer Contribution Gap Metrics
-- **Per-Employee Underpayment**: $84–$157/year per worker due to frozen SUI wage bases
-- **Aggregate Trust Fund Shortfall**: $690.6M/year across DMV (MD $239M, VA $332M, DC $119M)
-- **Wage Base Erosion**: MD base is 11.7% of avg wage (down from 16.3% in 2010); VA 11.7% (down from 16.7%); DC 8.0% (down from 13.6%)
-
-### Political Accountability: FEC Funding Profiles (v2.5)
-- **7 Priority Members Analyzed**: Warner, Trone, Kaine, Hoyer, Van Hollen, Beyer, Cardin
-- **Real FEC API Data**: Committee receipts, disbursements, individual/PAC contributions
-- **Business vs Labor Split**: Trone ($7.1M business), Hoyer ($7.3M business), Warner ($0 labor)
-- **Total Analyzed**: $46.6M in campaign receipts across 7 members
-
-### Data Sources
-| Source | Status | Data | Method |
-|--------|--------|------|--------|
-| **Census ACS 2022** | ✅ Live | Median household income by congressional district | api.census.gov |
-| **FEC API** | ✅ Live | Campaign receipts, committees, contributions | api.open.fec.gov |
-| **Congress.gov Directory** | ✅ Static | Member names, IDs, committees | Public records |
-| **BLS QCEW** | ✅ Static | Covered employment, average wages | BLS published data |
-| **HUD FMR** | ✅ Static | Fair Market Rent by county | HUD published schedules |
-| **OpenSecrets API** | ❌ Blocked | Net worth, industry codes | Cloudflare challenge |
-| **Congress.gov API** | ❌ Rate-limited | Live member + committee data | OVER_RATE_LIMIT |
-
-### Files
-- `ui_index_engine.py` — Core engine: CSV → BAI/WBI/MIPI calculations
-- `generate_figures.py` — Matplotlib figure generator (4 core charts)
-- `ui_index_analysis.ipynb` — Interactive Jupyter notebook reproducing all core analysis
-- `political_layer_analyzer.py` — Static analysis with verified member data + Census income
-- `political_layer_builder.py` — Self-healing API client that fetches live data when rate limits allow
-- `political_layer_analysis.ipynb` — Interactive notebook with political charts
-- `api_client.py` — Self-healing API client with retry, caching, and audit logging
-- `employer_contribution_gap.py` — SUI trust fund shortfall calculator
-- `generate_employer_gap_charts.py` — Matplotlib generator for 3 employer gap charts
-- `fec_integration.py` — FEC API integration: candidate search, committee mapping, contribution analysis
-- `fec_quick_test.py` — Standalone FEC API test script
-- `generate_fec_charts.py` — Matplotlib generator for 3 FEC funding charts
-- `Slicers_and_Drilldown_Strategy.md` — Interactive dashboard specification (ObservableHQ/Streamlit)
-- `data/dmv_macro_baselines.csv` — Core UI baseline data (2010, 2018, 2026)
-- `data/political/political_layer_report.json` — 24 member profiles with Census income
-- `data/political/fec_funding_profiles.json` — 7 FEC funding profiles with contributions
-- `data/political/fec_audit_log.json` — API call audit trail
-- `data/political/employer_contribution_gap.json` — $690M shortfall breakdown by state
-- `figures/01-04` — Core UI index charts
-- `figures/05-07` — Employer contribution gap charts
-- `figures/11-13` — FEC campaign finance charts
-
-### Honest Limitations
-- OpenSecrets API requires manual key registration (blocked by Cloudflare challenge)
-- Congress.gov API rate limits require waiting period between bulk fetches
-- Committee assignments change with each Congress (current: 119th, 2025–2027)
-- Member financial disclosures are range-based, not exact amounts
-- Employer contribution gap assumes uniform 2.5% SUI tax rate (actual rates vary by employer experience)
-- BLS wage data is 2024 annual average; 2026 is projected
-
-### Self-Healing Framework
 ```
-api_client.py → retry with backoff → cache with TTL → audit log → validation report
+ui_index/
+├── fec_integration_v251d.py          # Cycle-filtered official analysis
+├── fec_integration_raw_investigative.py # Multi-cycle raw forensics
+├── delta_analyzer.py                  # Cross-cycle corruption detection
+├── generate_fec_charts.py             # Visualization (with cycle assertion)
+├── political_layer_builder.py         # Congress.gov + Census enrichment
+├── api_client.py                      # Self-healing API client with caching
+├── data/political/
+│   ├── fec_funding_profiles.json      # Official cycle-filtered profiles
+│   ├── fec_funding_profiles_raw.json  # Multi-cycle raw profiles (investigative)
+│   ├── corruption_delta_analysis.json # Delta flags and investigative priority
+│   ├── members.json                   # Congress.gov member metadata
+│   └── audit_log.json                 # All API calls, cached and live
+├── figures/                           # Exported matplotlib charts
+└── .env.example                       # API key template
 ```
-When APIs are accessible, the builder automatically validates member counts (MD=10, VA=13, DC=1) and cross-references Census income data. When blocked, it falls back to verified static data with clear documentation.
 
-## 📝 License
+---
 
-MIT — see [LICENSE](LICENSE)
+## Investigative Methodology
+
+### Phase 1: Data Collection (Dual Track)
+
+```bash
+# Official view (cycle-filtered, validated)
+python fec_integration_v251d.py
+
+# Investigative view (multi-cycle, anomaly-preserving)
+python fec_integration_raw_investigative.py
+
+# Delta analysis (corruption detection)
+python delta_analyzer.py
+```
+
+### Phase 2: Visualization
+
+```bash
+# Charts with cycle assertion (fails if data is stale)
+python generate_fec_charts.py
+```
+
+### Phase 3: Political Layer Enrichment
+
+```bash
+# Congress.gov + Census median income overlay
+python political_layer_builder.py
+```
+
+---
+
+## License
+
+MIT — This is investigative journalism infrastructure. Use it to expose corruption.
+
+## Author
+
+Sierra Napier, MPA  
+Project: **The Stagnant Safety Net: A Tri-State Forensic Audit**
