@@ -13,6 +13,7 @@
       "line_number": "F3-11AI"
     },
     "purpose": "Cycle-filtered official view for public reporting",
+    "methodology": "Cycle-filtered to 2024 contributions only. Committee IDs (C00605022, C00390815) replace name fragments for exclusion. Self-funding detected by last-name matching. Business/labor categorization by keyword matching on contributor name. Corruption flags: multi_cycle_bleed (HIGH), committee_transfer (MEDIUM), excessive_self_funding (MEDIUM), vendor_masquerading_as_donor (LOW).",
     "caveat": "This view applies FEC cycle filters and excludes multi-cycle data. For corruption detection, compare against fec_funding_profiles_raw.json (multi-cycle) and corruption_delta_analysis.json."
   },
   "data": [

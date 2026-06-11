@@ -6,6 +6,7 @@
     "api_version": "v1",
     "reconciliation_status": "AUDIT",
     "purpose": "API call audit log",
+    "methodology": "api_client.py logs all HTTP requests with URL, status code, response time, and cache hit/miss. Includes retry attempts, rate limit tracking, and error classification. Logged per call to ensure full traceability of data provenance.",
     "caveat": "For corruption investigation, compare against raw multi-cycle data and delta analysis."
   },
   "data": {

@@ -12,7 +12,9 @@
       "per_page": null,
       "note": "Quick test without cycle filter \u2014 returns multi-cycle totals"
     },
-    "purpose": "Quick diagnostic test of FEC API connectivity \u2014 no cycle filter applied. Returns multi-cycle all-time totals. NOT a data source for analysis."
+    "purpose": "Quick diagnostic test of FEC API connectivity \u2014 no cycle filter applied. Returns multi-cycle all-time totals. NOT a data source for analysis.",
+    "methodology": "Single FEC API call to /candidate/{id}/totals/ endpoint with no cycle parameter. Returns all-time totals across all election cycles. Used to verify API connectivity and key validity before running the full v251d pipeline.",
+    "caveat": "Total receipts include contributions from 2022, 2020, and earlier cycles. NOT comparable to v251d cycle-filtered data. Do NOT use for charts or analysis."
   },
   "data": [
     {

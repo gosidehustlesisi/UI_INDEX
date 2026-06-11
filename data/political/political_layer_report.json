@@ -6,6 +6,7 @@
     "api_version": "Congress.gov v3 / Census ACS 2022 5-Year",
     "reconciliation_status": "ENRICHED",
     "purpose": "Congress.gov member metadata enriched with Census median household income by congressional district and committee assignments",
+    "methodology": "Congress.gov member list API filtered to MD, VA, DC. Member details API fetched for each member. Committee assignments extracted from details.committees array. Census ACS 2022 5-Year B19013_001E queried by congressional district. District keys constructed as state_fips + district_number (e.g., 2401 for MD-01). Non-voting delegate (DC) handled separately.",
     "data_sources": {
       "members": "Congress.gov API v3 (member list + details endpoints)",
       "income": "Census ACS 2022 5-Year B19013_001E (median household income by congressional district)",
