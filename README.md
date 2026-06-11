@@ -1,146 +1,192 @@
-# UI_INDEX — Political Corruption Forensics
+# UI Index: The Stagnant Safety Net
 
-## Project Purpose
+A forensic audit of unemployment insurance decay across DC, Maryland, and Virginia (2010–2026), with political funding analysis tracing the legislative levers.
 
-This is an **investigative data forensics project** examining political corruption patterns in the tri-state area (MD, VA, DC) through the lens of unemployment insurance policy accountability.
-
-**The core investigative hypothesis:** The "stagnant safety net" for unemployment benefits is not an accident of fiscal constraint — it is a **deliberate policy choice** funded by political actors who benefit from a broken system. This project traces the money to prove it.
-
----
-
-## Data Architecture
-
-### Dual-Track Analysis (Intentional by Design)
-
-We maintain **two parallel datasets** to detect corruption patterns that single-cycle analysis would miss:
-
-| Track | File | Purpose | Data Source |
-|-------|------|---------|-------------|
-| **Official View** | `fec_funding_profiles.json` | Cycle-filtered (2024), sanitized, public-facing | `fec_integration_v251d.py` |
-| **Investigative View** | `fec_funding_profiles_raw.json` | Multi-cycle, unfiltered, anomaly-detection | `fec_integration_raw_investigative.py` |
-| **Delta Analysis** | `corruption_delta_analysis.json` | Cross-cycle discrepancy flags | `delta_analyzer.py` |
-
-### The Delta IS the Signal
-
-The gap between the cycle-filtered view and the multi-cycle raw view is **not a data quality issue** — it is the **primary investigative target**. When a candidate's multi-cycle total exceeds their current-cycle total by >100%, that indicates:
-
-- Rolling committee structures that recycle funds indefinitely
-- Self-funding loans carried across cycles to bypass disclosure
-- Dark money routed through multi-cycle PACs and joint fundraising committees
-- Committee reorganizations that obscure donor origins
+**Author:** Sierra Napier, MPA  
+**Project:** *The Stagnant Safety Net: A Tri-State Forensic Audit*  
+**License:** MIT
 
 ---
 
-## Key Investigative Findings
+## What This Is
 
-### Known Anomalies (Documented, Not Fixed)
+This repository contains the data, code, and analysis behind an investigation into how unemployment insurance safety net adequacy has eroded across three jurisdictions — and who funds the legislators holding the policy levers.
 
-| Anomaly | What the Official View Shows | What the Raw View Reveals | Interpretation |
-|---------|------------------------------|---------------------------|----------------|
-| Van Hollen total | $330,578 (2024 cycle) | $1,515,661 (all cycles) | **360% gap** — multi-cycle financial engineering or committee reorganization |
-| JUSTICE 2022 | Not visible in 2024 cycle | $82K+ from prior cycle | Recycled campaign funds entering current cycle through amended filings |
-| "Business" contributors | Categorized by name | Includes vendors (e.g., NEW BLUE INTERACTIVE, LLC) | Possible shell company payments laundered through contribution channels |
-
-### Corruption Flags Generated
-
-The `fec_integration_v251d.py` script now generates `corruption_flags` for each member:
-
-- `multi_cycle_bleed` — Multi-cycle data appears in current-cycle query results (HIGH severity)
-- `committee_transfer` — Leadership PACs, joint fundraising committees funneling money (MEDIUM severity)
-- `excessive_self_funding` — Self-funding >50% of total (may indicate wealth concealment)
-- `vendor_masquerading_as_donor` — Service providers tagged as business contributors (possible shell company)
+It includes:
+- **4 macroeconomic indices** (BAI, WBI, MIPI, Housing Gap) calculated from BLS and Census data
+- **7 static visualization charts** (matplotlib) exported as PNGs
+- **3 political funding charts** (FEC data, 2024 cycle) exported as PNGs
+- **2 interactive Jupyter notebooks** for exploration and scenario analysis
+- **A portfolio landing page** (`index.html`) that embeds all figures
 
 ---
 
-## API Setup
+## Files in This Repository
 
-### Required Environment Variables
+### Python Scripts (12 files)
 
-Copy `.env.example` to `.env` and fill in your keys:
+| File | Purpose |
+|------|---------|
+| `ui_index_engine.py` | Reads `dmv_macro_baselines.csv`, calculates BAI/WBI/MIPI/Housing Gap indices |
+| `generate_figures.py` | Generates the 4 base charts (01–04) from the CSV data |
+| `employer_contribution_gap.py` | Calculates per-state employer contribution gap (frozen SUI wage bases vs. expected) |
+| `generate_employer_gap_charts.py` | Generates the 3 employer gap charts (05–07) |
+| `fec_integration_v251d.py` | FEC API integration (2024 cycle-filtered, production) — generates `fec_funding_profiles.json` |
+| `fec_integration_raw_investigative.py` | FEC API integration (multi-cycle, raw) — for corruption anomaly detection |
+| `fec_quick_test.py` | Quick FEC API connectivity test — diagnostic only, no cycle filter |
+| `generate_fec_charts.py` | Generates the 3 FEC funding charts (11–13) from `fec_funding_profiles.json` |
+| `political_layer_builder.py` | Congress.gov + Census ACS enrichment — generates member metadata with committee assignments and median income |
+| `political_layer_analyzer.py` | Analyzes `political_layer_report.json` for political patterns |
+| `delta_analyzer.py` | Compares cycle-filtered vs. multi-cycle FEC data to generate corruption delta flags |
+| `api_client.py` | Self-healing API client with caching, retry, and audit logging |
+
+### Notebooks (2 files)
+
+| File | Purpose |
+|------|---------|
+| `ui_index_analysis.ipynb` | BAI/WBI/MIPI/Housing Gap analysis — interactive exploration |
+| `political_layer_analysis.ipynb` | Political funding + committee analysis — interactive exploration |
+
+### Data Files (6 JSON + 1 CSV)
+
+| File | Generated By | Content |
+|------|-------------|---------|
+| `data/dmv_macro_baselines.csv` | Manual / BLS | Base input data: wages, housing, benefit caps by jurisdiction and year |
+| `data/political/fec_funding_profiles.json` | `fec_integration_v251d.py` | Cycle-filtered (2024) funding profiles with corruption flags |
+| `data/political/fec_excluded_self_funding.json` | `fec_integration_v251d.py` | Excluded contributions (self-funding, multi-cycle, transfers) |
+| `data/political/fec_quick_results.json` | `fec_quick_test.py` | Diagnostic test — **multi-cycle, NOT a data source** |
+| `data/political/employer_contribution_gap.json` | `employer_contribution_gap.py` | Per-state gap: frozen base vs. expected wage-indexed base |
+| `data/political/political_layer_report.json` | `political_layer_builder.py` | Congress.gov members enriched with Census median income + committees |
+| `data/political/fec_audit_log.json` | `api_client.py` | All API calls with status, timestamps, and cache hits |
+
+### Figures (10 PNGs)
+
+| File | Description |
+|------|-------------|
+| `figures/01_bai_decay_trajectory.png` | BAI decay 2010–2026 |
+| `figures/02_wbi_stagnation.png` | WBI stagnation |
+| `figures/03_mipi_clawback.png` | MIPI clawback severity |
+| `figures/04_housing_vs_wba_gap.png` | Housing cost vs. benefit gap |
+| `figures/05_employer_per_employee_gap.png` | Per-employee underpayment |
+| `figures/06_employer_aggregate_gap.png` | Annual trust fund shortfall |
+| `figures/07_statutory_vs_expected_wage_base.png` | Statutory vs. expected wage base |
+| `figures/11_fec_total_receipts.png` | FEC total receipts by member |
+| `figures/12_fec_business_vs_labor.png` | Business vs. labor contributions |
+| `figures/13_fec_contribution_mix.png` | Contribution mix by category |
+
+### Documentation
+
+| File | Purpose |
+|------|---------|
+| `README.md` | This file |
+| `ENVIRONMENT_ARCHITECTURE.md` | Future architecture proposal (not yet implemented) |
+| `Slicers_and_Drilldown_Strategy.md` | Interactive dashboard design specification (not yet implemented) |
+| `index.html` | Portfolio landing page — embeds all 10 figures with methodology notes |
+| `.env.example` | API key template (copy to `.env` and fill in your keys) |
+| `requirements.txt` | Python dependencies |
+
+### CI/CD
+
+| File | Purpose |
+|------|---------|
+| `.github/workflows/validate.yml` | GitHub Actions — validates JSON, CSV, figures, and script syntax on every push |
+
+---
+
+## How to Run
+
+### 1. Set up API keys
 
 ```bash
 cp .env.example .env
 # Edit .env with your real keys
 ```
 
-| Variable | Source | Purpose |
-|----------|--------|---------|
-| `FEC_API_KEY` | https://api.open.fec.gov/developers/ | FEC campaign finance data |
-| `CENSUS_API_KEY` | https://api.census.gov/data/key_signup.html | Median income by district |
+- **FEC API key:** https://api.open.fec.gov/developers/
+- **Census API key:** https://api.census.gov/data/key_signup.html
 
 Congress.gov uses `DEMO_KEY` (public, no signup required for basic use).
 
----
-
-## Data Quality Philosophy
-
-This project does **not** sanitize data to match official narratives. Instead:
-
-1. **Preserve anomalies** — Flag discrepancies as investigative leads, not errors
-2. **Dual-track validation** — Official view + raw view = corruption detection
-3. **Never suppress the gap** — The gap between endpoints is the story
-4. **Document uncertainty** — Every output carries `_metadata` with provenance, caveats, and reconciliation status
-
----
-
-## File Structure
-
-```
-ui_index/
-├── fec_integration_v251d.py          # Cycle-filtered official analysis
-├── fec_integration_raw_investigative.py # Multi-cycle raw forensics
-├── delta_analyzer.py                  # Cross-cycle corruption detection
-├── generate_fec_charts.py             # Visualization (with cycle assertion)
-├── political_layer_builder.py         # Congress.gov + Census enrichment
-├── api_client.py                      # Self-healing API client with caching
-├── data/political/
-│   ├── fec_funding_profiles.json      # Official cycle-filtered profiles
-│   ├── fec_funding_profiles_raw.json  # Multi-cycle raw profiles (investigative)
-│   ├── corruption_delta_analysis.json # Delta flags and investigative priority
-│   ├── members.json                   # Congress.gov member metadata
-│   └── audit_log.json                 # All API calls, cached and live
-├── figures/                           # Exported matplotlib charts
-└── .env.example                       # API key template
-```
-
----
-
-## Investigative Methodology
-
-### Phase 1: Data Collection (Dual Track)
+### 2. Install dependencies
 
 ```bash
-# Official view (cycle-filtered, validated)
+pip install -r requirements.txt
+```
+
+### 3. Generate the base analysis
+
+```bash
+python ui_index_engine.py
+python generate_figures.py
+```
+
+### 4. Generate the employer contribution gap
+
+```bash
+python employer_contribution_gap.py
+python generate_employer_gap_charts.py
+```
+
+### 5. Generate the political funding layer
+
+```bash
 python fec_integration_v251d.py
-
-# Investigative view (multi-cycle, anomaly-preserving)
-python fec_integration_raw_investigative.py
-
-# Delta analysis (corruption detection)
-python delta_analyzer.py
-```
-
-### Phase 2: Visualization
-
-```bash
-# Charts with cycle assertion (fails if data is stale)
 python generate_fec_charts.py
-```
-
-### Phase 3: Political Layer Enrichment
-
-```bash
-# Congress.gov + Census median income overlay
 python political_layer_builder.py
 ```
 
+### 6. Run the delta analysis (corruption detection)
+
+```bash
+python delta_analyzer.py
+```
+
 ---
 
-## License
+## Data Provenance
 
-MIT — This is investigative journalism infrastructure. Use it to expose corruption.
+Every JSON data file includes a `_metadata` block documenting:
+- **Generated by:** Which script produced it
+- **Generated at:** Timestamp
+- **Cycle:** Election year (for FEC data) or analysis year
+- **Data sources:** BLS, USDOL, FEC, Census, Congress.gov
+- **Methodology:** How the numbers were calculated
+- **Caveat:** Known limitations and approximations
 
-## Author
+See `DATA_CATALOG.md` for the full file inventory with lineage.
 
-Sierra Napier, MPA  
-Project: **The Stagnant Safety Net: A Tri-State Forensic Audit**
+---
+
+## Key Metrics
+
+| Index | Formula | What It Measures |
+|-------|---------|------------------|
+| **BAI** | Max WBA / Weekly Housing Cost | Can benefits cover rent? |
+| **WBI** | Taxable Wage Base / Avg Annual Wage | Is the tax base regressing? |
+| **MIPI** | (Earnings − Disregard) / Max WBA | Poverty trap for part-time workers |
+| **Housing Gap** | Weekly Housing − Max WBA | Survival deficit per week |
+
+---
+
+## Known Limitations
+
+- **Campaign finance categorization** uses keyword matching on contributor names (approximate). For production use, official FEC committee IDs should be used.
+- **Business/labor categorization** is based on string patterns, not official industry codes.
+- **Self-funding detection** uses last-name matching and may include false positives.
+- **Avg wages and covered employment** in the employer gap are approximate BLS estimates.
+- **The employer gap methodology** uses the 2010-ratio approach (Method B). Alternative methodologies (full wage base, CPI-only, national peer average, wage growth index) would produce different dollar figures. See the source code for scenario definitions.
+
+---
+
+## Portfolio
+
+The static portfolio landing page is at `index.html`. For interactive notebooks:
+
+- [BAI/WBI/MIPI Analysis](https://nbviewer.org/github/gosidehustlesisi/UI_INDEX/blob/main/ui_index_analysis.ipynb)
+- [Political Layer Analysis](https://nbviewer.org/github/gosidehustlesisi/UI_INDEX/blob/main/political_layer_analysis.ipynb)
+
+---
+
+## Repository
+
+https://github.com/gosidehustlesisi/UI_INDEX
