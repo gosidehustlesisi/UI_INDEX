@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Stagnant Safety Net — UI Index Forensic Analysis</title>
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --fg: #e8e8e8;
+    --muted: #888;
+    --accent: #e74c3c;
+    --accent2: #f1c40f;
+    --card-bg: #141414;
+    --border: #222;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.6;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+  header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .subtitle {
+    color: var(--muted);
+    font-size: 1rem;
+    margin-top: 0.3rem;
+  }
+  .meta {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+  .badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+  }
+  .badge.gold { background: var(--accent2); color: #000; }
+  h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin: 1.5rem 0 0.5rem;
+  }
+  p, li {
+    color: var(--fg);
+    font-size: 0.95rem;
+  }
+  ul { margin: 0.5rem 0 0.5rem 1.5rem; }
+  li { margin-bottom: 0.3rem; }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .card img {
+    width: 100%;
+    border-radius: 4px;
+    margin: 1rem 0 0.5rem;
+  }
+  .card .caption {
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-style: italic;
+    text-align: center;
+    margin-top: 0.3rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  .grid .card { margin: 0; }
+  .stat-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+  }
+  .stat-box {
+    flex: 1;
+    min-width: 200px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0.3rem;
+  }
+  .methodology {
+    background: #1a1a1a;
+    border-left: 3px solid var(--accent2);
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    color: #aaa;
+  }
+  .methodology strong { color: var(--fg); }
+  footer {
+    border-top: 1px solid var(--border);
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  a { color: #4aa8d8; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  @media (max-width: 600px) {
+    h1 { font-size: 1.5rem; }
+    .stat-value { font-size: 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="badge">Forensic Audit</span>
+  <span class="badge gold">Public Data</span>
+  <h1>The Stagnant Safety Net</h1>
+  <div class="subtitle">A Tri-State Forensic Audit of Unemployment Insurance Decay</div>
+  <div class="meta">DC · Maryland · Virginia | 2010 → 2026 | BLS · USDOL · FEC · Census</div>
+</header>
+
+<section>
+  <p><strong>The core finding:</strong> In jurisdictions where average wages rose 40–80%, unemployment insurance taxable wage bases remained frozen. Maximum weekly benefits stayed flat. The result is a safety net that has eroded to the point of near-irrelevance for covering basic housing costs. Meanwhile, the political funding data reveals which legislators hold the levers — and who funds them.</p>
+</section>
+
+<h2>1. Benefit Adequacy Decay</h2>
+<div class="card">
+  <p>The <strong>Benefit Adequacy Index (BAI)</strong> measures whether the maximum weekly benefit can cover median weekly housing costs. BAI = 1.0 means the benefit exactly covers housing. Below 1.0, workers must cover the gap from savings, credit, or family support.</p>
+  <img src="figures/01_bai_decay_trajectory.png" alt="BAI Decay Trajectory 2010-2026">
+  <div class="caption">Figure 1: BAI decay across DC, Maryland, and Virginia. All three jurisdictions crossed or approached the 1.0 survival threshold by 2026.</div>
+</div>
+
+<div class="stat-row">
+  <div class="stat-box">
+    <div class="stat-value">0.96</div>
+    <div class="stat-label">Maryland BAI 2026</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-value">0.90</div>
+    <div class="stat-label">Virginia BAI 2026</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-value">0.85</div>
+    <div class="stat-label">DC BAI 2026</div>
+  </div>
+</div>
+
+<h2>2. The Regressive Wage Base</h2>
+<div class="card">
+  <p>The <strong>Regressive Wage Base Index (WBI)</strong> shows the taxable wage base as a fraction of average annual wages. A falling WBI means the tax burden is shifting downward — lower-wage workers pay a larger share of their income into the system while higher-wage workers pay proportionally less.</p>
+  <img src="figures/02_wbi_stagnation.png" alt="WBI Stagnation">
+  <div class="caption">Figure 2: WBI stagnation. MD and VA frozen since 2010. DC raised once in 2018 but still below historical ratio.</div>
+</div>
+
+<div class="methodology">
+  <strong>Methodology note:</strong> The taxable wage base is the dollar cap on which employers pay SUI tax. Maryland: $8,500 (frozen since 1992). Virginia: $8,000 (frozen since 2010). DC: $9,000 (raised from $9,000 in 2018). Average wages have grown 40–80% in the same period. <a href="#methodology">See full methodology</a>.
+</div>
+
+<h2>3. The Multi-Income Penalty</h2>
+<div class="card">
+  <p>The <strong>Multi-Income Penalty Index (MIPI)</strong> measures the clawback severity when a UI recipient earns side income. At $250/week in part-time earnings, the net benefit retained is reduced by the entire earnings amount (minus a small disregard). This creates a poverty trap: workers are penalized for trying to supplement their income.</p>
+  <img src="figures/03_mipi_clawback.png" alt="MIPI Clawback Severity">
+  <div class="caption">Figure 3: MIPI clawback severity. Higher MIPI = greater penalty for part-time work. All three jurisdictions show worsening trap dynamics.</div>
+</div>
+
+<h2>4. The Housing Gap</h2>
+<div class="card">
+  <p>The <strong>Housing Gap</strong> is the dollar amount by which median weekly housing costs exceed the maximum weekly benefit. This is the "survival deficit" — the amount a UI recipient must cover from other sources every week.</p>
+  <img src="figures/04_housing_vs_wba_gap.png" alt="Housing vs WBA Gap">
+  <div class="caption">Figure 4: Housing costs vs. maximum weekly benefits. The gap widened in all three jurisdictions as housing costs rose and benefits stayed flat.</div>
+</div>
+
+<h2>5. Employer Contribution Gap</h2>
+<div class="card">
+  <p>Employers pay SUI tax on the frozen wage base, not the actual salary. If the wage base had kept pace with average wage growth, employer contributions per worker would be significantly higher — and the trust fund would be solvent enough to support adequate benefits.</p>
+  <img src="figures/05_employer_per_employee_gap.png" alt="Per-Employee Underpayment">
+  <div class="caption">Figure 5: Per-employee underpayment. The gap between what employers pay and what they would pay at a wage-indexed base.</div>
+</div>
+
+<div class="card">
+  <img src="figures/06_employer_aggregate_gap.png" alt="Aggregate Trust Fund Shortfall">
+  <div class="caption">Figure 6: Annual trust fund shortfall by state. The aggregate impact of frozen wage bases on trust fund solvency.</div>
+</div>
+
+<div class="card">
+  <img src="figures/07_statutory_vs_expected_wage_base.png" alt="Statutory vs Expected Wage Base">
+  <div class="caption">Figure 7: Statutory vs. expected wage base (2026). The red bars show what the base would be if it tracked 2010 wage ratios.</div>
+</div>
+
+<h2>6. Political Funding Profiles</h2>
+<div class="card">
+  <p>Connecting the policy outcomes to the funding sources. The FEC data reveals who contributes to the legislators who hold the levers on UI/SUI policy.</p>
+  <img src="figures/11_fec_total_receipts.png" alt="FEC Total Receipts">
+  <div class="caption">Figure 11: Total receipts by member (2024 cycle). Scale varies dramatically by member and state.</div>
+</div>
+
+<div class="card">
+  <img src="figures/12_fec_business_vs_labor.png" alt="Business vs Labor Contributions">
+  <div class="caption">Figure 12: Business vs. labor contributions by member. The ratio of business-to-labor funding correlates with committee jurisdiction over UI policy.</div>
+</div>
+
+<div class="card">
+  <img src="figures/13_fec_contribution_mix.png" alt="Contribution Mix">
+  <div class="caption">Figure 13: Contribution mix by member. Color-coded by category: business, labor, PAC, other.</div>
+</div>
+
+<h2 id="methodology">Methodology</h2>
+<div class="card">
+  <h3>Data Sources</h3>
+  <ul>
+    <li><strong>BLS QCEW:</strong> Average annual wages, covered employment (2024)</li>
+    <li><strong>State DOL statutes:</strong> SUI taxable wage bases, maximum weekly benefits</li>
+    <li><strong>FEC API:</strong> Campaign finance data (2024 cycle, v1)</li>
+    <li><strong>Census ACS:</strong> Median household income by congressional district</li>
+    <li><strong>Congress.gov API:</strong> Committee assignments, member metadata</li>
+  </ul>
+
+  <h3>Index Definitions</h3>
+  <ul>
+    <li><strong>BAI</strong> = Max Weekly Benefit / Median Weekly Housing Cost</li>
+    <li><strong>WBI</strong> = Taxable Wage Base / Average Annual Wage</li>
+    <li><strong>MIPI</strong> = (Earnings − Disregard) / Max Weekly Benefit</li>
+    <li><strong>Housing Gap</strong> = Median Weekly Housing − Max Weekly Benefit</li>
+  </ul>
+
+  <h3>Limitations</h3>
+  <ul>
+    <li>Campaign finance categorization uses keyword matching on contributor names (approximate). For production use, official FEC committee IDs should be used.</li>
+    <li>Business/labor categorization is based on string patterns, not official industry codes.</li>
+    <li>Self-funding detection uses last-name matching and may include false positives.</li>
+    <li>All figures are generated from public data. No proprietary or restricted datasets were used.</li>
+  </ul>
+</div>
+
+<h2>Interactive Analysis</h2>
+<div class="card">
+  <p>This is a static extract of the full analysis. For interactive notebooks, scenario comparison, and raw data access:</p>
+  <ul>
+    <li><a href="https://github.com/gosidehustlesisi/UI_INDEX">GitHub Repository</a> — full source code, data, and notebooks</li>
+    <li><a href="https://nbviewer.org/github/gosidehustlesisi/UI_INDEX/blob/main/ui_index_analysis.ipynb">BAI/WBI/MIPI Notebook</a> (nbviewer)</li>
+    <li><a href="https://nbviewer.org/github/gosidehustlesisi/UI_INDEX/blob/main/political_layer_analysis.ipynb">Political Layer Notebook</a> (nbviewer)</li>
+  </ul>
+</div>
+
+<footer>
+  <p>Author: Sierra Napier, MPA</p>
+  <p>Project: The Stagnant Safety Net — A Tri-State Forensic Audit</p>
+  <p>Data: BLS, USDOL, FEC, Census | Generated: 2026-06-11</p>
+  <p>License: MIT | <a href="https://github.com/gosidehustlesisi/UI_INDEX">github.com/gosidehustlesisi/UI_INDEX</a></p>
+</footer>
+
+</body>
+</html>
